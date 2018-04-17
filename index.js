@@ -60,8 +60,10 @@ setInterval(function(){
 }, 1/10 * 1000);
 
 function exit() {
-  btn.unexport();
-  led.unexport();
+  m1d1.unexport();
+  m1d2.unexport();
+  m2d1.unexport();
+  m2d2.unexport();
   process.exit();
 }
 
