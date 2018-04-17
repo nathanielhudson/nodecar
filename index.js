@@ -44,6 +44,7 @@ function dutyCycle(pin, duty, tick){ //sloppy duty cycle algorithm. There's prob
 
 var tick = 0; //approx tenths of a second running. Duty cycle is per tenths of a second.
 var cps = 1/300 * 1000;
+var threshold = 0.02;
 
 setInterval(function(){
   tick+=cps/10;
@@ -51,10 +52,10 @@ setInterval(function(){
     tick--;
   }
 
-  if (drive > 0.05) {
+  if (drive > threshold) {
     dutyCycle(m1d1, drive, tick);
     m1d2.write(0);
-  } else if (drive < -0.2) {
+  } else if (drive < -threshold) {
     m1d1.write(0);
     dutyCycle(m1d2, -drive, tick);
   } else {
@@ -62,10 +63,10 @@ setInterval(function(){
     m1d2.write(0);
   }
 
-  if (turn > 0.2) {
+  if (turn > threshold) {
     dutyCycle(m2d1, turn, tick);
     m2d2.write(0);
-  } else if (turn < -0.2) {
+  } else if (turn < -threshold) {
     m2d1.write(0);
     dutyCycle(m2d2, -turn, tick);
   } else {
