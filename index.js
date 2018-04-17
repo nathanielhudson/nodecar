@@ -47,9 +47,10 @@ var cps = 1/300 * 1000;
 var threshold = 0.0001;
 
 setInterval(function(){
-  tick+=cps/10;
+  tick+=cps*10;
   if (tick > 1) {
     tick--;
+    console.log(tick);
   }
 
   if (drive > threshold) {
