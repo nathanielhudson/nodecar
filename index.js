@@ -2,11 +2,19 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var Gpio = require('chip-gpio').Gpio;
+var LiveCam = require('livecam');
 
 var m1d1 = new Gpio(0, 'low');
 var m1d2 = new Gpio(1, 'low');
 var m2d1 = new Gpio(2, 'low');
 var m2d2 = new Gpio(3, 'low');
+
+const webcam_server = new LiveCam({
+    'start' : function() {
+        console.log('WebCam server started on :11000');
+    }
+});
+webcam_server.broadcast();
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
