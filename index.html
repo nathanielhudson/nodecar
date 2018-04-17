@@ -37,9 +37,7 @@
       outputEl.innerHTML	= '<b>Result:</b> '
       + ' drive:'+msg.drive
       + ' turn:'+msg.turn;
-      if (msg.drive != 0) {
-        socket.emit('control', msg);
-      }
+      socket.emit('control', msg);
     }, 1/10 * 1000);
   });
 </script>
