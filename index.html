@@ -30,9 +30,10 @@
     setInterval(function(){
       var outputEl	= document.getElementById('result');
       var msg = {
-        drive: Math.min(1, Math.max(-1, joystick.deltaY()/-100)),
+        drive: Math.min(1, Math.max(-1, joystick.deltaY()/-150)),
         turn: Math.min(1, Math.max(-1, joystick.deltaX()/-100)),
-      }
+      };
+      msg.drive = msg.drive*msg.drive*msg.drive; //cube for nicer control curve?
       outputEl.innerHTML	= '<b>Result:</b> '
       + ' drive:'+msg.drive
       + ' turn:'+msg.turn;
