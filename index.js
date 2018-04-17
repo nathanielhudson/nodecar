@@ -42,12 +42,13 @@ function dutyCycle(pin, duty, tick){ //sloppy duty cycle algorithm. There's prob
   }
 };
 
-var tick = 0; //approx tenths of a second running. Duty cycle is per tenths of a second.
+var tick = 0; //approx tenths of a second running. Duty cycle is per ticksPerSec-ths of a second.
+var ticksPerSec = 30;
 var cps = 1/300 * 1000;
 var threshold = 0.0001;
 
 setInterval(function(){
-  tick+=cps/100;
+  tick+=cps/1000*ticksPerSec;
   if (tick > 1) {
     tick--;
     console.log(tick);
